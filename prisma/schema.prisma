@@ -14,11 +14,14 @@ datasource db {
 }
 
 // students table
-model Students{
+model Student{
   id Int @id @default(autoincrement())
   name String
   email String @unique
-  rollNo Int 
-  CreatedAt DateTime @default(now())
-  UpdatedAt DateTime @default(now())
+  // for database column rename use @map
+  rollNo Int @map("roll_no")
+  CreatedAt DateTime @default(now()) @map("created_at")
+  UpdatedAt DateTime @default(now()) @map("updated_at")
+  // for custom table name use @@map
+  @@map("students")
 }
