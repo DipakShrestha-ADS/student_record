@@ -2,7 +2,7 @@ version: "3.8"
 services:
   postgresql:
     image: postgres:17.7
-    container_name: student_records_db
+    container_name: student_records_db_container
     restart: always
     env_file:
       - .env  

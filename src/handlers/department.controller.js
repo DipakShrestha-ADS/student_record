@@ -38,9 +38,31 @@ const createDepartment = async (req, res) => {
   });
 };
 
-const updateDepartment = async (req, res) => {};
+const updateDepartment = async (req, res) => {
+  let id = req.params.id;
+  const { name } = req.body;
+  const updatedDepartment = await prisma.department.update({
+    where: { id: Number(id) },
+    data: {
+      name,
+    },
+  });
+  res.status(200).json({
+    message: `Department with ID ${id} updated successfully`,
+    data: updatedDepartment,
+  });
+};
 
-const deleteDepartment = async (req, res) => {};
+const deleteDepartment = async (req, res) => {
+  let id = req.params.id;
+  let deletedDepartment = await prisma.department.delete({
+    where: { id: Number(id) },
+  });
+  res.status(200).json({
+    message: `Department with ID ${id} deleted successfully`,
+    data: deletedDepartment,
+  });
+};
 
 export {
   getAllDepartments,
